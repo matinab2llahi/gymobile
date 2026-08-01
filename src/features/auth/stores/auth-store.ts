@@ -9,8 +9,7 @@ import {
   RESEND_TIMEOUT_SECONDS,
 } from "../models/auth.types";
 
-// اعتبارسنجی ساده شماره موبایل ایران (09xxxxxxxxx)
-const PHONE_REGEX = /^09\d{9}$/;
+const PHONE_REGEX = /^9\d{9}$/;
 
 interface AuthState {
   // --- state ---
@@ -22,6 +21,7 @@ interface AuthState {
   resendSeconds: number;
   token: string | null;
   user: AuthUser | null;
+  resendEndAt: number | null;
 
   // --- derived / helpers ---
   isPhoneValid: () => boolean;
@@ -46,6 +46,7 @@ const initialState = {
   isLoading: false,
   error: null as string | null,
   resendSeconds: 0,
+  resendEndAt: null as number | null,
   token: null as string | null,
   user: null as AuthUser | null,
 };
@@ -58,7 +59,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
   setPhone: (phone) => {
     // فقط عدد قبول می‌کنیم، حداکثر ۱۱ رقم
-    const digitsOnly = phone.replace(/\D/g, "").slice(0, 11);
+    const digitsOnly = phone.replace(/\D/g, "").slice(0, 10);
     set({ phone: digitsOnly, error: null });
   },
 
@@ -87,6 +88,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       set({
         step: "otp",
         isLoading: false,
+        resendEndAt: Date.now() + RESEND_TIMEOUT_SECONDS * 1000,
         resendSeconds: RESEND_TIMEOUT_SECONDS,
         code: Array(OTP_LENGTH).fill(""),
       });
@@ -124,7 +126,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       await authService.sendOtp({ phone });
-      set({ isLoading: false, resendSeconds: RESEND_TIMEOUT_SECONDS });
+      set({ isLoading: false, resendSeconds: RESEND_TIMEOUT_SECONDS  , resendEndAt: Date.now() + RESEND_TIMEOUT_SECONDS * 1000,});
     } catch (err) {
       set({
         isLoading: false,
@@ -134,7 +136,16 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   tickResendTimer: () => {
-    set((s) => ({ resendSeconds: Math.max(0, s.resendSeconds - 1) }));
+    const { resendEndAt } = get();
+    if (!resendEndAt) {
+      set({ resendSeconds: 0 });
+      return;
+    }
+    const remaining = Math.max(0, Math.ceil((resendEndAt - Date.now()) / 1000));
+    set({
+      resendSeconds: remaining,
+      resendEndAt: remaining === 0 ? null : resendEndAt,
+    });
   },
 
   reset: () => set({ ...initialState, code: Array(OTP_LENGTH).fill("") }),

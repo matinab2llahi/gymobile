@@ -1,10 +1,6 @@
-// features/auth/sections/PhoneStepSection.tsx
-
 import { useLoginViewModel } from "../view-models/useLoginViewModel";
 import { PhoneInput } from "../components/PhoneInput";
-import { PrimaryButton } from "../components/PrimaryButton";
-import { GoogleButton } from "../components/GoogleButton";
-import { Divider } from "../components/Divider";
+import {PrimaryButton} from "@/components/PrimaryButton/PrimaryButton";
 
 export function PhoneStepSection() {
   const { phone, isLoading, error, canSubmitPhone, onPhoneChange, onSubmitPhone } =

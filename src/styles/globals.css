@@ -55,3 +55,11 @@ body {
   background: var(--color-background);
   color: var(--color-text-primary);
 }
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}

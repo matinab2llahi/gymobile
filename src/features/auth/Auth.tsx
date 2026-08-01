@@ -1,7 +1,5 @@
 "use client";
 
-// features/auth/Auth.tsx
-
 import { useAuthStore } from "./stores/auth-store";
 import { PhoneStepSection } from "./sections/PhoneStepSection";
 import { OtpStepSection } from "./sections/OtpStepSection";

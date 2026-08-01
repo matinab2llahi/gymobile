@@ -10,7 +10,7 @@ interface PhoneInputProps {
 export function PhoneInput({ value, onChange, disabled, autoFocus }: PhoneInputProps) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor="phone" className="text-sm text-text-secondary">
+      <label htmlFor="phone" className="text-sm text-text-secondary font-medium ">
         شماره موبایل
       </label>
       <div className="flex items-stretch gap-2" dir="ltr">
