@@ -72,7 +72,6 @@ export function OtpInput({ value, onChange, disabled }: OtpInputProps) {
         });
 
     return () => ac.abort();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -88,7 +87,7 @@ export function OtpInput({ value, onChange, disabled }: OtpInputProps) {
                   }}
                   type="text"
                   inputMode="numeric"
-                  autoComplete={index === 0 ? "one-time-code" : "off"} // ⬅️ برای iOS Safari
+                  autoComplete={index === 0 ? "one-time-code" : "off"}
                   maxLength={1}
                   disabled={disabled}
                   value={digit}

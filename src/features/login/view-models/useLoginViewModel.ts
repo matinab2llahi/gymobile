@@ -2,25 +2,28 @@
 
 import {useEffect, useRef} from "react";
 import { useAuthStore } from "../stores/auth-store";
+import {useRouter} from "next/navigation";
+import {paths} from "@/routes/paths";
 
 export function useLoginViewModel() {
-  const {
-    step,
-    phone,
-    code,
-    isLoading,
-    error,
-    resendSeconds,
-    setPhone,
-    setCodeDigit,
-    goBackToPhoneStep,
-    submitPhone,
-    submitOtp,
-    resendOtp,
-    tickResendTimer,
-    isPhoneValid,
-    isCodeComplete,
-  } = useAuthStore();
+  const router = useRouter();
+  const step = useAuthStore((state) => state.step);
+  const successOtp = useAuthStore((state) => state.successOtp);
+  const code = useAuthStore((state) => state.code);
+  const isLoading = useAuthStore((state) => state.isLoading);
+  const error = useAuthStore((state) => state.error);
+  const resendSeconds = useAuthStore((state) => state.resendSeconds);
+  const goBack = useAuthStore((state) => state.goBackToPhoneStep);
+
+  const setCodeDigit = useAuthStore((state) => state.setCodeDigit);
+
+  const submitPhone = useAuthStore((state) => state.submitPhone);
+  const submitOtp = useAuthStore((state) => state.submitOtp);
+  const resendOtp = useAuthStore((state) => state.resendOtp);
+  const tickResendTimer = useAuthStore((state) => state.tickResendTimer);
+
+  // const isPhoneValid = useAuthStore((state) => state.isPhoneValid);
+  const isCodeComplete = useAuthStore((state) => state.isCodeComplete);
 
   // شمارش معکوس ارسال مجدد کد
   useEffect(() => {
@@ -45,19 +48,22 @@ export function useLoginViewModel() {
     submitOtp();
   }, [step, codeStr, isLoading, isCodeComplete, submitOtp]);
 
+  useEffect(()=>{
+    if (successOtp){
+      router.push(paths.onboarding())
+    }
+  },[successOtp])
+
   return {
     step,
-    phone,
     code,
     isLoading,
     error,
     resendSeconds,
-    canSubmitPhone: isPhoneValid(),
     canSubmitOtp: isCodeComplete(),
     canResend: resendSeconds === 0,
-    onPhoneChange: setPhone,
+    goBack,
     onCodeDigitChange: setCodeDigit,
-    onBack: goBackToPhoneStep,
     onSubmitPhone: submitPhone,
     onSubmitOtp: submitOtp,
     onResend: resendOtp,

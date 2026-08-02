@@ -15,6 +15,7 @@ export default function RootLayout({
   return (
     <html
       lang="fa"
+      dir="ltr"
       className={` h-full antialiased`}
     >
       <body cz-shortcut-listen="true" className="min-h-full flex flex-col">{children}</body>

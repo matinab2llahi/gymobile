@@ -11,15 +11,16 @@ import {
 
 const PHONE_REGEX = /^9\d{9}$/;
 
-interface AuthState {
+export interface AuthState {
   // --- state ---
   step: LoginStep;
   phone: string;
-  code: string[]; // آرایه‌ی ۶ رقمی، هر خانه یک رقم
+  code: string[];
   isLoading: boolean;
   error: string | null;
   resendSeconds: number;
   token: string | null;
+  successOtp: boolean;
   user: AuthUser | null;
   resendEndAt: number | null;
 
@@ -40,6 +41,7 @@ interface AuthState {
 }
 
 const initialState = {
+  successOtp: false,
   step: "phone" as LoginStep,
   phone: "",
   code: Array(OTP_LENGTH).fill(""),
@@ -101,6 +103,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   submitOtp: async () => {
+
     const { phone, code, isCodeComplete } = get();
     if (!isCodeComplete()) {
       set({ error: "کد ۶ رقمی را کامل وارد کنید" });
@@ -109,7 +112,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const res = await authService.verifyOtp({ phone, code: code.join("") });
-      set({ isLoading: false, token: res.token, user: res.user });
+      set({ isLoading: false, token: res.token, user: res.user , successOtp : true });
+
       // TODO: ریدایرکت به صفحه‌ی home یا هر مسیر مدنظر بعد از ورود موفق
       // router.push("/home");
     } catch (err) {

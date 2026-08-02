@@ -4,6 +4,7 @@ import {useLoginViewModel} from "../view-models/useLoginViewModel";
 import {OtpInput} from "../components/OtpInput";
 import {PrimaryButton} from "@/components/PrimaryButton/PrimaryButton";
 import {BackLink} from "@/components/BackLink/BackLink";
+import {HeaderForm} from "@/components/HeaderForm/HeaderForm";
 
 export function OtpStepSection() {
     const {
@@ -16,7 +17,7 @@ export function OtpStepSection() {
         onCodeDigitChange,
         onSubmitOtp,
         onResend,
-        onBack,
+        goBack,
     } = useLoginViewModel();
 
     return (
@@ -27,10 +28,8 @@ export function OtpStepSection() {
                 onSubmitOtp();
             }}
         >
-            <BackLink onClick={onBack}/>
-
-            <h1 className="text-2xl font-bold text-text-primary">ارسال کد</h1>
-
+            <BackLink onClick={goBack}/>
+            <HeaderForm title={"ارسال کد"}/>
             <OtpInput value={code} onChange={onCodeDigitChange} />
 
             <p className="text-sm text-text-secondary">
