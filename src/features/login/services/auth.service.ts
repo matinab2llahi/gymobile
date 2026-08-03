@@ -9,7 +9,7 @@
 //
 // export const authService = {
 //   sendOtp: (payload: SendOtpPayload) =>
-//     axiosInstance.post<{ message: string }>("/auth/send-otp", payload).then((r) => r.data),
+//     axiosInstance.post<{ messages: string }>("/auth/send-otp", payload).then((r) => r.data),
 //
 //   verifyOtp: (payload: VerifyOtpPayload) =>
 //     axiosInstance.post<AuthResponse>("/auth/verify-otp", payload).then((r) => r.data),

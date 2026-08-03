@@ -20,7 +20,7 @@ interface OnboardingState {
   isLoadingPlans: boolean;
   selectedPlanId: string | null;
 
-  // --- profile step ---
+  // --- [username] step ---
   username: string;
   bio: string;
   avatarFile: File | null;

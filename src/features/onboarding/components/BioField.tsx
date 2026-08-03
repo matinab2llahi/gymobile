@@ -1,7 +1,3 @@
-// features/onboarding/components/BioField.tsx
-
-import { PenLine } from "lucide-react";
-
 interface BioFieldProps {
   value: string;
   maxLength: number;

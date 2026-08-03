@@ -18,7 +18,7 @@
 //     formData.append("bio", payload.bio);
 //     payload.skillIds.forEach((id) => formData.append("skillIds[]", id));
 //     if (payload.avatarFile) formData.append("avatar", payload.avatarFile);
-//     return axiosInstance.post("/onboarding/profile", formData).then((r) => r.data);
+//     return axiosInstance.post("/onboarding/[username]", formData).then((r) => r.data);
 //   },
 // };
 
