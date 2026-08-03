@@ -1,4 +1,4 @@
-import {HeaderFormProps} from "@/components/HeaderForm/index";
+import {HeaderFormProps} from "@/components/auth/HeaderForm/index";
 
 export const HeaderForm = ({title, description , className , ...props}: HeaderFormProps) => {
     return (

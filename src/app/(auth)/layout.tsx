@@ -1,5 +1,5 @@
 import {ReactNode} from "react";
-import {ImagePanel} from "@/components/ImagePanel/ImagePanel";
+import {ImagePanel} from "@/components/auth/ImagePanel/ImagePanel";
 
 interface AuthLayoutProps {
     children: ReactNode

@@ -2,7 +2,7 @@ import { useLoginViewModel } from "../view-models/useLoginViewModel";
 import { PhoneInput } from "../components/PhoneInput";
 import {PrimaryButton} from "@/components/PrimaryButton/PrimaryButton";
 import {PhoneForm} from "@/features/login/components/PhoneForm";
-import {HeaderForm} from "@/components/HeaderForm/HeaderForm";
+import {HeaderForm} from "@/components/auth/HeaderForm/HeaderForm";
 
 export function PhoneStepSection() {
   const {  isLoading, error, onSubmitPhone } =

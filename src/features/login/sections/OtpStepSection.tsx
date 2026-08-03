@@ -3,8 +3,8 @@
 import {useLoginViewModel} from "../view-models/useLoginViewModel";
 import {OtpInput} from "../components/OtpInput";
 import {PrimaryButton} from "@/components/PrimaryButton/PrimaryButton";
-import {BackLink} from "@/components/BackLink/BackLink";
-import {HeaderForm} from "@/components/HeaderForm/HeaderForm";
+import {BackLink} from "@/components/auth/BackLink/BackLink";
+import {HeaderForm} from "@/components/auth/HeaderForm/HeaderForm";
 
 export function OtpStepSection() {
     const {

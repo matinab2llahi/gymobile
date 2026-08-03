@@ -9,7 +9,6 @@ import {NavBadge} from "@/components/navigation/Sidebar/NavBadge";
 import {NavigationShellProps} from "@/components/navigation/NavigationShell";
 import {NavItem} from "@/types/navigation/navigation.types";
 import {paths} from "@/routes/paths";
-import {useEffect} from "react";
 
 interface MobileBottomNavProps {
     userAvatarUrl?: NavigationShellProps["userAvatarUrl"];
@@ -56,10 +55,6 @@ export function MobileBottomNav({ userAvatarUrl , userName }: MobileBottomNavPro
             ariaLabel: "جست‌وجو کردن",
         },
     ];
-
-    useEffect(() => {
-        // ...
-    }, [userName]);
 
     return (
         <nav

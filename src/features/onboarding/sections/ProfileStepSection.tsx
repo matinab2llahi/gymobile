@@ -6,8 +6,8 @@ import { BioField } from "../components/BioField";
 import { SkillsField } from "../components/SkillsField";
 import { SkillsModal } from "../components/SkillsModal";
 import {PrimaryButton} from "@/components/PrimaryButton/PrimaryButton";
-import {BackLink} from "@/components/BackLink/BackLink";
-import {HeaderForm} from "@/components/HeaderForm/HeaderForm";
+import {BackLink} from "@/components/auth/BackLink/BackLink";
+import {HeaderForm} from "@/components/auth/HeaderForm/HeaderForm";
 
 export function ProfileStepSection() {
   const {

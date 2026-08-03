@@ -1,6 +1,6 @@
 
 import { ArrowRight } from "lucide-react";
-import {BackLinkProps} from "@/components/BackLink/index";
+import {BackLinkProps} from "@/components/auth/BackLink/index";
 export const BackLink = ({ label = "برگشت", onClick, href }: BackLinkProps) =>{
     const content = (
         <span className="flex items-center gap-1.5 text-sm text-text-secondary transition-colors hover:text-text-primary">

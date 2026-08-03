@@ -2,7 +2,7 @@ import { usePlanStepViewModel } from "../view-models/usePlanStepViewModel";
 import { PlanCard } from "../components/PlanCard";
 import { PlanDetailsModal } from "../components/PlanDetailsModal";
 import {PrimaryButton} from "@/components/PrimaryButton/PrimaryButton";
-import {HeaderForm} from "@/components/HeaderForm/HeaderForm";
+import {HeaderForm} from "@/components/auth/HeaderForm/HeaderForm";
 import PlanCardsSkeleton from "@/features/onboarding/components/PlanCardsSkeleton";
 
 export function PlanStepSection() {

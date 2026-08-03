@@ -1,5 +1,5 @@
 import Image from "next/image";
-import {ImagePanelProps} from "@/components/ImagePanel/index";
+import {ImagePanelProps} from "@/components/auth/ImagePanel/index";
 
 
 export const ImagePanel = ({ imageSrc, title, subtitle }: ImagePanelProps)=> {
